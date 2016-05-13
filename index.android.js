@@ -8,19 +8,34 @@ import {
 } from 'react-native';
 
 import TodoList from './conponents/TodoList'
+import { List, Map } from 'immutable';
+import { createStore } from 'redux';
+import reducer from './reducers/reducer';
+import { connect, Provider } from 'react-redux';
 
-const dummyTodos = [
-  { id: 0, done: true,  text: 'make components' },
-  { id: 1, done: false, text: 'design actions' },
-  { id: 2, done: false, text: 'implement reducer' },
-  { id: 3, done: false, text: 'connect components' }
-];
+const store = createStore(reducer);
+
+const ConnectedTodoList = connect(
+  function mapStateToProps(state) {
+    return { todos: state }
+  },
+  function mapDispatchToProps(dispatch) {
+    return {
+      addTodo: text => dispatch(addTodo(text)),
+      toggleTodo: id => dispatch(toggleTodo(id))
+    }
+  }
+)(TodoList);
+
+console.log(ConnectedTodoList);
 
 class reactodo extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TodoList todos={dummyTodos}></TodoList>
+        <Provider store={store}>
+          <ConnectedTodoList />
+        </Provider>
       </View>
     );
   }
