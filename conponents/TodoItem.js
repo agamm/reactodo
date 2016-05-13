@@ -10,8 +10,9 @@ import {
 
 class TodoItem extends Component {
     render() {
-       var style = this.props.done ? todoItemStyle.done : todoItemStyle.undone;
-       return <Text style={style}> {this.props.text} </Text>
+        const todoItem = this.props;
+        var style = todoItem.done ? todoItemStyle.done : todoItemStyle.undone;
+        return <Text style={style}> {todoItem.text} </Text>
     }
 }
 

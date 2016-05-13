@@ -13,15 +13,17 @@ import TodoItem from './TodoItem'
 
 class TodoList extends Component {
     render() {
+        const todos = this.props.todos;
+        console.log(todos);
         return (
             <View style={todoListStyles.container}>
                  <TextInput
                     style={todoListStyles.textInput}
                     onChangeText={(text) => this.setState({text})}
                   />
-                <TodoItem text={"Todo item #1"} done={true}></TodoItem>
-                <TodoItem text={"Todo item #2"}></TodoItem>
-                <TodoItem text={"Todo item #3"}></TodoItem>
+                {todos.map(todo => (
+                    <TodoItem key={todo.id} text={todo.text} done={todo.done}></TodoItem>
+                ))}
             </View>
         )
     }
