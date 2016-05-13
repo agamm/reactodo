@@ -26,7 +26,7 @@ class TodoList extends Component {
                     style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                     onChangeText={(text) => this.setState({text})}
                   />
-                <TodoItem text={"Todo item #1"}></TodoItem>
+                <TodoItem text={"Todo item #1"} done={true}></TodoItem>
                 <TodoItem text={"Todo item #2"}></TodoItem>
                 <TodoItem text={"Todo item #3"}></TodoItem>
             </View>

@@ -10,15 +10,20 @@ import {
 
 class TodoItem extends Component {
     render() {
-       
-       return <Text style={todoItemStyle.text}> {this.props.text} </Text>
+       var style = this.props.done ? todoItemStyle.done : todoItemStyle.undone;
+       return <Text style={style}> {this.props.text} </Text>
     }
 }
 
 var todoItemStyle = StyleSheet.create({
-  text: {
+  undone: {
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  done: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textDecorationLine: 'line-through'
   }
 });
 
