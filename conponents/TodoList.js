@@ -14,16 +14,9 @@ import TodoItem from './TodoItem'
 class TodoList extends Component {
     render() {
         return (
-            <View style={{
-                    flex: 1,
-                    marginTop: 5,
-                    borderWidth: 1,
-                    borderRadius: 5,
-                    borderStyle: 'dotted',
-                    padding: 5
-                }}>
+            <View style={todoListStyles.container}>
                  <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                    style={todoListStyles.textInput}
                     onChangeText={(text) => this.setState({text})}
                   />
                 <TodoItem text={"Todo item #1"} done={true}></TodoItem>
@@ -33,5 +26,21 @@ class TodoList extends Component {
         )
     }
 }
+
+var todoListStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 5,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderStyle: 'dotted',
+    padding: 5
+  },
+  textInput: {
+    height: 40, 
+    borderColor: 'gray', 
+    borderWidth: 1
+  }
+});
 
 module.exports = TodoList
