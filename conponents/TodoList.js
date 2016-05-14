@@ -14,10 +14,16 @@ import {
 import TodoItem from './TodoItem'
 
 class TodoList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: ""
+        }
+    }
+
     onSubmitTodo(e) {
-        console.log(this.props)
-        console.log(this.props.addTodo)
-        this.props.addTodo(this.state.text)
+        if(this.state.text.length > 0)
+            this.props.addTodo(this.state.text)
     }
 
     render() {
@@ -56,6 +62,7 @@ var todoListStyles = StyleSheet.create({
     borderWidth: 1
   },
   button: {
+    backgroundColor: 'blue',
     marginBottom: 7,
     borderRadius: 2
   }

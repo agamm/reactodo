@@ -8,7 +8,8 @@ const init = [
 export default function(todos=init, action) {
   switch(action.type) {
     case 'ADD_TODO':
-        return todos.push(action.payload)
+        return todos.concat(action.payload)
+
     case 'TOGGLE_TODO':
         return todos.map(todo => {
             if (todo.id === action.payload.id)
@@ -16,6 +17,7 @@ export default function(todos=init, action) {
             else 
                 return todo
         })
+        
     default:
       return todos;
   }

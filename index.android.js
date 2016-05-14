@@ -12,12 +12,14 @@ import { List, Map } from 'immutable';
 import { createStore } from 'redux';
 import reducer from './reducers/reducer';
 import { connect, Provider } from 'react-redux';
-
+import {addTodo, toggleTodo} from './actions/actions'
 const store = createStore(reducer);
 
 const ConnectedTodoList = connect(
   function mapStateToProps(state) {
-    return { todos: state }
+    return { 
+      todos: state 
+    }
   },
   function mapDispatchToProps(dispatch) {
     return {
@@ -26,8 +28,6 @@ const ConnectedTodoList = connect(
     }
   }
 )(TodoList);
-
-console.log(ConnectedTodoList);
 
 class reactodo extends Component {
   render() {
