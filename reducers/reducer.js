@@ -11,13 +11,13 @@ export default function(todos=init, action) {
         return todos.concat(action.payload)
 
     case 'TOGGLE_TODO':
-        return todos.map(todo => {
+        var t = todos.map(todo => {
             if (todo.id === action.payload.id)
-                todo.done = !todo.done;
-            else 
-                return todo
+                todo.done = !todo.done
+            return todo
         })
-        
+        return t
+
     default:
       return todos;
   }

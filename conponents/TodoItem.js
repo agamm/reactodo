@@ -6,13 +6,22 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  TouchableOpacity , 
 } from 'react-native';
 
 class TodoItem extends Component {
+    onClick() {
+      this.props.toggleTodo(this.props.id)
+    }
+
     render() {
         const todoItem = this.props;
         var style = todoItem.done ? todoItemStyle.done : todoItemStyle.undone;
-        return <Text style={style}> {todoItem.text} </Text>
+        return (
+          <TouchableOpacity onPress={this.onClick.bind(this)}>
+            <Text style={style} > {todoItem.text} </Text>
+          </TouchableOpacity >
+        )
     }
 }
 

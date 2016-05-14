@@ -8,7 +8,7 @@ import {
   View,
   Text, 
   TextInput,
-  TouchableHighlight, 
+  TouchableOpacity, 
 } from 'react-native';
 
 import TodoItem from './TodoItem'
@@ -28,19 +28,20 @@ class TodoList extends Component {
 
     render() {
         const todos = this.props.todos;
+        const toggleTodo = this.props.toggleTodo;
         return (
             <View style={todoListStyles.container}>
                 <TextInput
                     style={todoListStyles.textInput}
                     onChangeText={(text) => this.setState({text})}
                 />
-                <TouchableHighlight
+                <TouchableOpacity
                     style={todoListStyles.button}
                     onPress={this.onSubmitTodo.bind(this)}>
                     <Text>Add</Text>
-                </TouchableHighlight>
+                </TouchableOpacity>
                 {todos.map(todo => (
-                    <TodoItem key={todo.id} text={todo.text} done={todo.done}></TodoItem>
+                    <TodoItem key={todo.id} id={todo.id} text={todo.text} done={todo.done} toggleTodo={toggleTodo}></TodoItem>
                 ))}
             </View>
         )
