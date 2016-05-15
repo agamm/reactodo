@@ -8,7 +8,8 @@ import {
   View,
   Text, 
   TextInput,
-  TouchableOpacity, 
+  TouchableOpacity,
+  ScrollView, 
 } from 'react-native';
 
 import TodoItem from './TodoItem'
@@ -40,9 +41,13 @@ class TodoList extends Component {
                     onPress={this.onSubmitTodo.bind(this)}>
                     <Text>Add</Text>
                 </TouchableOpacity>
-                {todos.map(todo => (
-                    <TodoItem key={todo.id} id={todo.id} text={todo.text} done={todo.done} toggleTodo={toggleTodo}></TodoItem>
-                ))}
+                <ScrollView
+                    style={todoListStyles.scrollView}
+                >
+                    {todos.map(todo => (
+                        <TodoItem key={todo.id} id={todo.id} text={todo.text} done={todo.done} toggleTodo={toggleTodo}></TodoItem>
+                    ))}
+                </ScrollView>
             </View>
         )
     }
@@ -66,7 +71,11 @@ var todoListStyles = StyleSheet.create({
     backgroundColor: 'blue',
     marginBottom: 7,
     borderRadius: 2
-  }
+  },
+  scrollView: {
+    backgroundColor: '#6A85B1',
+    height: 300,
+  },
 });
 
 module.exports = TodoList
