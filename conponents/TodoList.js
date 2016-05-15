@@ -13,6 +13,8 @@ import {
 } from 'react-native';
 
 import TodoItem from './TodoItem'
+import { connect } from 'react-redux';
+import {addTodo, toggleTodo} from '../actions/actions'
 
 class TodoList extends Component {
     constructor(props) {
@@ -28,7 +30,8 @@ class TodoList extends Component {
     }
 
     render() {
-        const todos = this.props.todos;
+        console.log(this.props);
+        const todos = this.props.todos; 
         const toggleTodo = this.props.toggleTodo;
         return (
             <View style={todoListStyles.container}>
@@ -41,9 +44,7 @@ class TodoList extends Component {
                     onPress={this.onSubmitTodo.bind(this)}>
                     <Text>Add</Text>
                 </TouchableOpacity>
-                <ScrollView
-                    style={todoListStyles.scrollView}
-                >
+                <ScrollView style={todoListStyles.scrollView}>
                     {todos.map(todo => (
                         <TodoItem key={todo.id} id={todo.id} text={todo.text} done={todo.done} toggleTodo={toggleTodo}></TodoItem>
                     ))}
@@ -60,7 +61,8 @@ var todoListStyles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderStyle: 'dotted',
-    padding: 5
+    padding: 5,
+    paddingTop: 40
   },
   textInput: {
     height: 40, 
@@ -78,4 +80,18 @@ var todoListStyles = StyleSheet.create({
   },
 });
 
-module.exports = TodoList
+const ConnectedTodoList = connect(
+  function mapStateToProps(state) {
+    return { 
+      todos: state 
+    }
+  },
+  function mapDispatchToProps(dispatch) {
+    return {
+      addTodo: text => dispatch(addTodo(text)),
+      toggleTodo: id => dispatch(toggleTodo(id))
+    }
+  }
+)(TodoList);
+
+module.exports = ConnectedTodoList
